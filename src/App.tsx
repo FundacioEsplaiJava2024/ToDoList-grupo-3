@@ -1,18 +1,19 @@
-import { useState } from 'react'
-import FormularioTareas from "./components/FormularioTareas";
-import TodoList  from './components/TodoList';
+import React, {useState} from "react";
+import TodoForm from "./components/TodoForm";
 
-const App: React.FC=()=>{
-  const [tareas, setTareas] = useState<string[]>([]);
+const App=()=> {
+  const[todos, setTodos]=useState<string[]>([]);
 
-  const handleAddTarea=(tarea:string)=>{
-    setTareas((prevTareas)=>[...prevTareas, tarea]);
+  const handleAddTodo=(text:string)=>{
+    setTodos((prevTarea)=>[...prevTarea,text]);
   };
-
   return (
     <div>
-      <FormularioTareas onAddTarea={handleAddTarea}/>
-      <TodoList tareas={tareas} />
+      <h1>Aplicacion de Tareas</h1>
+      <TodoForm onAddTarea={handleAddTodo} />
+      <ul>
+        {todos.map((todo,index)=>(<li key={index}>{todo}</li>))}
+      </ul>
     </div>
   );
 };
