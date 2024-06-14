@@ -15,7 +15,7 @@ const tasks: Task[] = [
 
 function App() {
   const handleDelete = (task: Task) => {
-    // No hace nada por ahora
+    // No fa res, de moment
   };
 
   return (
