@@ -3,7 +3,7 @@ import { Task } from "../model/task";
 
 interface TodoListProps{
     todos: Task[];
-}
+}  
 
 const TodoList: React.FC<TodoListProps>=({todos} : TodoListProps)=>{
     return (
