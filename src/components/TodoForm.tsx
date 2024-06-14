@@ -15,11 +15,8 @@ const TodoForm:React.FC<TodoForm>=({onAddTarea})=>{
 
     return(
         <form onSubmit={handleSubmit}>
-            <input
-            type="text" value={tarea}
-            onChange={(evento)=>setTarea(evento.target.value)}
-            placeholder="Agregar una nueva tarea"
-            />
+            <input type="text" value={tarea}
+            onChange={(evento)=>setTarea(evento.target.value)} />
             <button type="submit">Agregar Tarea</button>
             </form>
     );
