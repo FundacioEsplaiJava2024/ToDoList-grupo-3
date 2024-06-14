@@ -1,29 +1,30 @@
-import React from 'react';
+import { useState } from "react";
+import TodoForm from "./components/TodoForm";
+import TodoList from "./components/TodoList";
 import { Task } from "./model/task";
-import { TaskListItem } from './components/TaskListItem';
 
-const tasks: Task[] = [
-  {
-    id: 1,
-    name: 'passejar el gos',
-  },
-  {
-    id: 2,
-    name: 'natejar la casa',
-  },
-];
+const App=()=> {
+  const[todos, setTodos]=useState<Task[]>([]);
 
-function App() {
-  const handleDelete = (task: Task) => {
-    // No fa res, de moment
-  };
+  const handleAddTarea=(text:string)=>{
+    const newTodo : Task = {
+      id: Date.now(),
+      name: text,
+    };
+    setTodos([...todos,newTodo]);
+  };  
+  
+  // const handleDelete = (task: Task) => {
+  //   // No fa res, de moment
+  // };
 
   return (
-    <ul>
-      <TaskListItem task={tasks[0]} onDelete={handleDelete}/>
-      <TaskListItem task={tasks[1]} onDelete={handleDelete}/>
-    </ul>
+    <div>
+      <h1>Aplicacion de Tareas</h1>
+      <TodoForm onAddTarea={handleAddTarea} />
+      <TodoList todos={todos} />
+    </div>
   );
 }
 
-export default App
+export default App;
