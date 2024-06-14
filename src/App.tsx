@@ -1,20 +1,20 @@
 import React, {useState} from "react";
 import TodoForm from "./components/TodoForm";
+import TodoList from "./components/TodoList";
 
 const App=()=> {
-  const[todos, setTodos]=useState<string[]>([]);
+  const[todos, setTodos]=useState<{id: number; text:string}[]>([]);
 
-  const handleAddTodo=(text:string)=>{
-    setTodos((prevTarea)=>[...prevTarea,text]);
+  const handleAddTarea=(text:string)=>{
+    const newTodo={id:Date.now(),text};
+    setTodos([...todos,newTodo]);
   };
   return (
     <div>
       <h1>Aplicacion de Tareas</h1>
-      <TodoForm onAddTarea={handleAddTodo} />
-      <ul>
-        {todos.map((todo,index)=>(<li key={index}>{todo}</li>))}
-      </ul>
-    </div>
+      <TodoForm onAddTarea={handleAddTarea} />
+      <TodoList todos={todos} />
+          </div>
   );
 };
 
