@@ -11,9 +11,21 @@ const App=()=> {
     const newTodo : Task = {
       id: uuidv4(),
       name: text,
+      completed: false,
     };
     setTodos([...todos,newTodo]);
   };  
+
+  const handleToggleCompleted = (task: Task) => {
+    setTodos(
+      todos.map((t) => {
+        if (t.id === task.id) {
+          return { ...t, completed: !t.completed };
+        }
+        return t;
+      })
+    );
+  };
   
   // const handleDelete = (task: Task) => {
   //   // No fa res, de moment
@@ -23,7 +35,7 @@ const App=()=> {
     <div>
       <h1>Aplicacion de Tareas</h1>
       <TodoForm onAddTarea={handleAddTarea} />
-      <TodoList todos={todos} />
+      <TodoList todos={todos} onToggleCompleted={handleToggleCompleted}/>
     </div>
   );
 }
