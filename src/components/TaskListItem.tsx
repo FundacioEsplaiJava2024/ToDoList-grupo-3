@@ -6,7 +6,7 @@ interface Props {
   onDelete: (task: Task) => void;
 }
 
-export const TaskListItem: FunctionComponent<Props> = ({ task, onDelete }) => {
+export const TaskListItem: FunctionComponent<Props> = ({ task, onDelete }: Props) => {
   const onClick = () => {
     onDelete(task);
   };
