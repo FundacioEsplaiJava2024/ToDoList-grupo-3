@@ -12,7 +12,7 @@ export const TaskListItem: FunctionComponent<Props> = ({ task, onDelete }: Props
   };
 
   return (
-    <li>
+    <li key={task.id}>
       {task.name} <button onClick={onClick}>Delete</button>
     </li>
   );

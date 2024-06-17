@@ -1,5 +1,6 @@
 import React from "react";
 import { Task } from "../model/task";
+import { TaskListItem } from "./TaskListItem";
 
 interface TodoListProps{
     todos: Task[];
@@ -8,7 +9,7 @@ interface TodoListProps{
 const TodoList: React.FC<TodoListProps>=({todos} : TodoListProps)=>{
     return (
         <ul>
-            {todos.map((todo)=>(<li key={todo.id}>{todo.name}</li>
+            {todos.map((todo)=>(<TaskListItem task={todo} onDelete={(task)=>{console.log("delete " + task.name)}}/> 
             ))}
         </ul>
     );
