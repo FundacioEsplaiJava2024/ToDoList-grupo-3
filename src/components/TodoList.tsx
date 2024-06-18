@@ -9,9 +9,8 @@ interface TodoListProps{
     onEditTask: (task: Task, newName: string) => void;
 }  
 
-const TodoList: React.FC<TodoListProps>=({todos, onDeleteTask, onToggleCompleted
-    , onEditTask 
- } : TodoListProps)=>{
+const TodoList: React.FC<TodoListProps>=({
+    todos, onDeleteTask, onToggleCompleted, onEditTask } : TodoListProps)=>{
     return (
         <ul>
             {todos.map((todo)=>(

@@ -8,7 +8,7 @@ interface Props {
   onEditTask: (task: Task, newName: string) => void;
 }
 
-export const TaskListItem: FunctionComponent<Props> = ({ task, onDelete, onToggleCompleted,onEditTask }: Props) => {
+export const TaskListItem: FunctionComponent<Props> = ({ task, onDelete, onToggleCompleted, onEditTask }: Props) => {
   const [editing, setEditing] = useState(false);
   const [newName, setNewName] = useState(task.name);
   
