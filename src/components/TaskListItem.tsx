@@ -25,6 +25,10 @@ export const TaskListItem: FunctionComponent<Props> = ({ task, onDelete, onToggl
   };
 
   const handleSave = () => {
+    if (newName.length < 1 || newName.length > 16) {
+      alert("La tarea debe tener entre 1 y 16 caracteres");
+      return;
+  }
     onEditTask(task, newName);
     setEditing(false);
   };
@@ -38,7 +42,6 @@ export const TaskListItem: FunctionComponent<Props> = ({ task, onDelete, onToggl
         type="text"
         value={newName}
         onChange={(e) => setNewName(e.target.value)}
-        onBlur={handleSave}
       />
       <button onClick={handleSave}> Aceptar</button>
       </>
