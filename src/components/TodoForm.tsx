@@ -9,6 +9,10 @@ const TodoForm:React.FC<TodoForm>=({onAddTarea})=>{
 
     const handleSubmit=(evento:React.FormEvent<HTMLFormElement>)=>{
         evento.preventDefault();
+        if (tarea.length < 1 || tarea.length > 16) {
+            alert("La tarea debe tener entre 1 y 16 caracteres");
+            return;
+        }
             onAddTarea(tarea);
             setTarea('');
     };

@@ -31,11 +31,25 @@ const App=()=> {
     setTodos(todos.filter((t)=>t.id != task.id))
    };
 
+   const handleEditTask = (task: Task, newName: string) => {
+    setTodos(
+      todos.map((t) => {
+        if (t.id === task.id) {
+          return { ...t, name: newName };
+        }
+        return t;
+      })
+    );
+  };
+
   return (
     <div>
       <h1>Aplicacion de Tareas</h1>
       <TodoForm onAddTarea={handleAddTarea} />
-      <TodoList todos={todos} onDeleteTask= {handleDelete} onToggleCompleted={handleToggleCompleted}/>
+      <TodoList todos={todos} 
+        onDeleteTask= {handleDelete} 
+        onToggleCompleted={handleToggleCompleted}
+        onEditTask={handleEditTask}/>
     </div>
   );
 }
