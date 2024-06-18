@@ -4,16 +4,17 @@ import { TaskListItem } from "./TaskListItem";
 
 interface TodoListProps{
     todos: Task[];
+    onDeleteTask:(task:Task) => void;
     onToggleCompleted: (task: Task) => void;
 }  
 
-const TodoList: React.FC<TodoListProps>=({todos, onToggleCompleted } : TodoListProps)=>{
+const TodoList: React.FC<TodoListProps>=({todos, onDeleteTask, onToggleCompleted } : TodoListProps)=>{
     return (
         <ul>
             {todos.map((todo)=>(
                 <TaskListItem 
                 task={todo} 
-                onDelete={(task)=>{console.log("delete " + task.name)}}
+                onDelete={onDeleteTask}
                 onToggleCompleted={onToggleCompleted}
                 /> 
             ))}

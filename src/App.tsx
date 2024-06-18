@@ -27,15 +27,15 @@ const App=()=> {
     );
   };
   
-  // const handleDelete = (task: Task) => {
-  //   // No fa res, de moment
-  // };
+   const handleDelete = (task: Task) => {
+    setTodos(todos.filter((t)=>t.id != task.id))
+   };
 
   return (
     <div>
       <h1>Aplicacion de Tareas</h1>
       <TodoForm onAddTarea={handleAddTarea} />
-      <TodoList todos={todos} onToggleCompleted={handleToggleCompleted}/>
+      <TodoList todos={todos} onDeleteTask= {handleDelete} onToggleCompleted={handleToggleCompleted}/>
     </div>
   );
 }
