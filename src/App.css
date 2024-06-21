@@ -1,1 +1,22 @@
+.columns-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
 
+.column {
+    padding: 30px;
+}
+
+.left-column {
+    border-right: 1px solid #ccc;
+}
+
+.right-column {
+    border-left: 1px solid #ccc;
+}
+
+.column h2 {
+    margin-top: -20px; 
+    margin-bottom: 10px; 
+}
