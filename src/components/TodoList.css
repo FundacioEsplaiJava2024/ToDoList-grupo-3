@@ -1,0 +1,29 @@
+.task-list {
+    list-style: none;
+    padding: 0;
+}
+
+.task-list li {
+    background-color: #383838;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.task-list li input[type="checkbox"] {
+    margin-right: 10px;
+}
+
+
+.task-list li button:hover {
+    background-color: #4cae4c;
+}
+
+.task-list li button:focus {
+    outline: none;
+}
+
+  

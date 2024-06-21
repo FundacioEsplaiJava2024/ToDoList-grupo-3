@@ -43,7 +43,7 @@ const App=()=> {
   };
 
   return (
-    <div>
+    <div className="container">
       <h1>Aplicacion de Tareas</h1>
       <TodoForm onAddTarea={handleAddTarea} />
       <TodoList todos={todos} 
