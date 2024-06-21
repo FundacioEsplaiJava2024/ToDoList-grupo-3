@@ -1,4 +1,5 @@
 import React, {useState} from "react";
+import '../components/TodoForm.css'
 
 interface TodoForm{
     onAddTarea: (texto:string)=> void;
@@ -18,10 +19,10 @@ const TodoForm:React.FC<TodoForm>=({onAddTarea})=>{
     };
 
     return(
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="add-task-form">
             <input type="text" value={tarea}
             onChange={(evento)=>setTarea(evento.target.value)} />
-            <button type="submit">Agregar Tarea</button>
+            <button type="submit" className="button">Agregar Tarea</button>
             </form>
     );
 };

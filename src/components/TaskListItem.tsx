@@ -1,5 +1,6 @@
 import { FunctionComponent, useState } from "react";
 import { Task } from "../model/task";
+import '../components/TaskListItem.css'
 
 interface Props {
   task: Task;
@@ -34,23 +35,27 @@ export const TaskListItem: FunctionComponent<Props> = ({ task, onDelete, onToggl
   };
 
   return (
-    <li key={task.id}>
-      <input type="checkbox" checked={task.completed} onChange={onToggle} />
-      {editing ? (
-        <>
-        <input
-        type="text"
-        value={newName}
-        onChange={(e) => setNewName(e.target.value)}
-      />
-      <button onClick={handleSave}> Aceptar</button>
-      </>
-      ) : (
-        <span style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>{task.name}</span>
-      )}
-      
-      <button onClick={onClick}>Delete</button>
-      <button onClick={handleEdit}>Edit</button>
+    <li key={task.id} className="task-list-item">
+       <div className="task-done">
+        <input type="checkbox" checked={task.completed} onChange={onToggle} className="checkbox"/>
+        {editing ? (
+          <>
+          <input
+          type="text"
+          value={newName}
+          onChange={(e) => setNewName(e.target.value)}
+          className="input"
+        />
+        <button className="button" onClick={handleSave}> Aceptar</button>
+        </>
+        ) : (
+          <h3 className="task-name"><span style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>{task.name}</span></h3>
+        )}
+      </div>
+      <div className="actions">
+        <button onClick={onClick} className="button">Delete</button>
+        <button onClick={handleEdit} className="button">Edit</button>
+      </div>
     </li>
   );
 };

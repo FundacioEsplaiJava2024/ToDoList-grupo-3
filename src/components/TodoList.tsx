@@ -1,6 +1,7 @@
 import React from "react";
 import { Task } from "../model/task";
 import { TaskListItem } from "./TaskListItem";
+import '../components/TodoList.css'
 
 interface TodoListProps{
     todos: Task[];
@@ -12,7 +13,7 @@ interface TodoListProps{
 const TodoList: React.FC<TodoListProps>=({
     todos, onDeleteTask, onToggleCompleted, onEditTask } : TodoListProps)=>{
     return (
-        <ul>
+        <ul className="task-list">
             {todos.map((todo)=>(
                 <TaskListItem 
                 task={todo} 
