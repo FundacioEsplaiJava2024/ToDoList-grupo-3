@@ -1,8 +1,8 @@
 import { useState } from "react";
+import { TodoistApi } from "@doist/todoist-api-typescript"
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
 import { Task } from "./model/task";
-import {v4 as uuidv4 } from 'uuid';
 import './App.css'
 import Header from "./components/Header";
 
@@ -13,14 +13,22 @@ const App=()=> {
   const [completedTasks, setCompletedTasks] = useState(0);
   const [totalTasks, setTotalTasks] = useState(0);
 
-  const handleAddTarea=(text:string)=>{
-    const newTodo : Task = {
-      id: uuidv4(),
-      name: text,
-      completed: false,
-    };
-    setTodos([...todos,newTodo]);
-    setTotalTasks(totalTasks + 1);
+  const tokenGrupo3 : string = "4132c59154e7de32883147e312b183e6ea6b2a40";
+  const api = new TodoistApi(tokenGrupo3);
+
+
+  const handleAddTarea= (text:string)=>{
+      api.addTask({ content: text, projectId: "2335230345" }).then((response) => {
+        const responseId = response.id;
+        const newTodo : Task = {
+          id: responseId,
+          name: text,
+          completed: false,
+        };
+        setTodos([...todos,newTodo]);
+        setTotalTasks(totalTasks + 1);
+      }).catch(e=> console.log(e));
+
   };  
 
   const handleToggleCompleted = (task: Task) => {
@@ -55,12 +63,20 @@ const App=()=> {
       setTodos(todos.filter((t) => t.id !== task.id));
     }
       setTotalTasks (totalTasks - 1)
+
+      api.deleteTask(task.id)
+        .then((isSuccess) => console.log(isSuccess))
+        .catch((error) => console.log(error))
     };
 
   const handleEditTask = (task: Task, newName: string) => {
     setTodos(
       todos.map((t) => {
         if (t.id === task.id) {
+          console.log(task.id)
+          api.updateTask(task.id, { content: newName })
+            .then((isSuccess) => console.log(isSuccess))
+            .catch((error) => console.log(error))
           return { ...t, name: newName };
         }
         return t;
