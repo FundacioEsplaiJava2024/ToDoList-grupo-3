@@ -1,6 +1,8 @@
 import { FunctionComponent, useState } from "react";
 import { Task } from "../model/task";
 import '../components/TaskListItem.css'
+import { Dropdown } from "./Dropdown";
+import { Option } from "../model/option";
 
 interface Props {
   task: Task;
@@ -34,6 +36,17 @@ export const TaskListItem: FunctionComponent<Props> = ({ task, onDelete, onToggl
     setEditing(false);
   };
 
+  const dropdownOptions: Array<Option> = [
+    {
+      value: "Delete",
+      onClick: onClick,
+    },
+    {
+      value: "Edit",
+      onClick: handleEdit,
+    }
+  ]
+
   return (
     <li key={task.id} className="task-list-item">
        <div className="task-done">
@@ -52,10 +65,13 @@ export const TaskListItem: FunctionComponent<Props> = ({ task, onDelete, onToggl
           <h3 className="task-name"><span style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>{task.name}</span></h3>
         )}
       </div>
-      <div className="actions">
+      {/*<div className="actions">
         <button onClick={onClick} className="button">Delete</button>
         <button onClick={handleEdit} className="button">Edit</button>
-      </div>
+      </div>*/}
+      <Dropdown
+        options={dropdownOptions}
+      />
     </li>
   );
 };
