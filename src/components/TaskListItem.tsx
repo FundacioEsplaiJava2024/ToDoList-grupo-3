@@ -3,6 +3,8 @@ import { Task } from "../model/task";
 import '../components/TaskListItem.css'
 import { Dropdown } from "./Dropdown";
 import { Option } from "../model/option";
+import { FaEdit } from "react-icons/fa";
+import { GiCancel } from "react-icons/gi";
 
 interface Props {
   task: Task;
@@ -38,11 +40,11 @@ export const TaskListItem: FunctionComponent<Props> = ({ task, onDelete, onToggl
 
   const dropdownOptions: Array<Option> = [
     {
-      value: "Delete",
+      value: <GiCancel/>,
       onClick: onClick,
     },
     {
-      value: "Edit",
+      value: <FaEdit/>,
       onClick: handleEdit,
     }
   ]
