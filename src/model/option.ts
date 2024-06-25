@@ -1,11 +1,12 @@
 
-export interface Option {
-    value: ReactElement;
-    onClick: () => void;
-
-  }
 import { ReactElement } from 'react';
-  //Icons
+
+export interface Option {
+  value: ReactElement;
+  onClick: () => void;
+
+}
+
 
   import {
     FaEdit,

@@ -8,17 +8,17 @@ import { GiCancel } from "react-icons/gi";
 
 interface Props {
   task: Task;
-  onDelete: (task: Task) => void;
+  onDeleteTask: (task: Task) => void;
   onToggleCompleted: (task: Task) => void;
   onEditTask: (task: Task, newName: string) => void;
 }
 
-export const TaskListItem: FunctionComponent<Props> = ({ task, onDelete, onToggleCompleted, onEditTask }: Props) => {
+export const TaskListItem: FunctionComponent<Props> = ({ task, onDeleteTask, onToggleCompleted, onEditTask }: Props) => {
   const [editing, setEditing] = useState(false);
   const [newName, setNewName] = useState(task.name);
   
-  const onClick = () => {
-    onDelete(task);
+  const onDelete = () => {
+    onDeleteTask(task);
   };
 
   const onToggle = () => {
@@ -41,7 +41,7 @@ export const TaskListItem: FunctionComponent<Props> = ({ task, onDelete, onToggl
   const dropdownOptions: Array<Option> = [
     {
       value: <GiCancel/>,
-      onClick: onClick,
+      onClick: onDelete,
     },
     {
       value: <FaEdit/>,
