@@ -5,6 +5,7 @@ import { Task } from "./model/task";
 import {v4 as uuidv4 } from 'uuid';
 import './App.css'
 import Header from "./components/Header";
+import DateToday from "./components/DateToday";
 
 
 const App=()=> {
@@ -74,6 +75,7 @@ const App=()=> {
         completedTasks={completedTasks}
         totalTasks={totalTasks}
       />
+      <DateToday/>
       <h2>Tareas a realizar:</h2>
       <TodoForm onAddTarea={handleAddTarea} />
       <div className="columns-container">
