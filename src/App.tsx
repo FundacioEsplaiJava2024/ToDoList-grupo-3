@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { TodoistApi } from "@doist/todoist-api-typescript"
 import TodoForm from "./components/TodoForm";
 import TodoList from "./components/TodoList";
@@ -15,6 +15,19 @@ const App=()=> {
 
   const tokenGrupo3 : string = "4132c59154e7de32883147e312b183e6ea6b2a40";
   const api = new TodoistApi(tokenGrupo3);
+
+  useEffect(() => {
+    api.getTasks().then((tasks) => {
+      const todoistTasks = tasks.map((task) => ({
+        id: task.id,
+        name: task.content,
+        completed: task.isCompleted,
+      }));
+      setTodos(todoistTasks.filter((task) => !task.completed));
+      setCompletedTodos(todoistTasks.filter((task) => task.completed));
+      setTotalTasks(todoistTasks.length);
+    }).catch(e=> console.log(e));
+  }, []);
 
 
   const handleAddTarea= (text:string)=>{
@@ -35,6 +48,7 @@ const App=()=> {
     setTodos(
       todos.map((t) => {
         if (t.id === task.id) {
+          
           return { ...t, completed: !t.completed };
         }
         return t;
@@ -42,9 +56,15 @@ const App=()=> {
     );
     
     if (task.completed) {
+      api.reopenTask(task.id)
+        .then((isSuccess) => console.log(isSuccess))
+        .catch((error) => console.log(error))
       setCompletedTodos(completedTodos.filter((t) => t.id!== task.id));
       setTodos([...todos, {...task, completed: false }]);
     } else {
+      api.closeTask(task.id)
+        .then((isSuccess) => console.log(isSuccess))
+        .catch((error) => console.log(error))
       setTodos(todos.filter((t) => t.id!== task.id));
       setCompletedTodos([...completedTodos, {...task, completed: true }]);
     }
@@ -73,7 +93,6 @@ const App=()=> {
     setTodos(
       todos.map((t) => {
         if (t.id === task.id) {
-          console.log(task.id)
           api.updateTask(task.id, { content: newName })
             .then((isSuccess) => console.log(isSuccess))
             .catch((error) => console.log(error))
