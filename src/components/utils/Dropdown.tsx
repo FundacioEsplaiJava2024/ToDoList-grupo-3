@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import { GoChevronDown } from "react-icons/go";
-import { Option } from "../model/option";
-import "../components/Dropdown.css"
+import { Option } from "../../model/option";
+import './Dropdown.css'
 
 interface DropdownItemProps {
     options: Array<Option>

@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import '../components/TodoForm.css'
+import "./TodoForm.css"
 
 interface TodoForm{
     onAddTarea: (texto:string)=> void;

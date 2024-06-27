@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { TodoistApi } from "@doist/todoist-api-typescript"
-import TodoForm from "./components/TodoForm";
-import TodoList from "./components/TodoList";
+import TodoForm from "./components/todoComponents/TodoForm";
+import TodoList from "./components/todoComponents/TodoList";
 import { Task } from "./model/task";
 import './App.css'
 import Header from "./components/Header";
