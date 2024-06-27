@@ -21,13 +21,8 @@ export const Dropdown: React.FC<DropdownItemProps> = ({ options}) => {
         </div>
         {isOpen && <div className="dropdown-list-container">
           {options.map((option: Option) => {
-            /*return(
-              <button onClick={option.value == "Edit" ? () => setIsOpen(false) : () => option.onClick()} className={` dropdown-list-btn`}>
-                {option.value}
-              </button>
-            )*/
            return(
-              <button onClick= {()=> {setIsOpen(false);option.onClick()}} className={` dropdown-list-btn`}>
+              <button onClick= {()=> {setIsOpen(false);option.onClick()}} className="button">
               {option.value}
             </button>
            )
