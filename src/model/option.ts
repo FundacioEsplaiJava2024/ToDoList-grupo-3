@@ -7,14 +7,13 @@ export interface Option {
 
 }
 
+import {
+  FaEdit,
+} from 'react-icons/fa';
 
-  import {
-    FaEdit,
-  } from 'react-icons/fa';
+import {
+  GiCancel
+} from 'react-icons/gi'
 
-  import {
-    GiCancel
-  } from 'react-icons/gi'
-  
-  export const editIcon = FaEdit;
-  export const deleteIcon = GiCancel;
+export const editIcon = FaEdit;
+export const deleteIcon = GiCancel;

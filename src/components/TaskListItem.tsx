@@ -8,17 +8,17 @@ import { GiCancel } from "react-icons/gi";
 
 interface Props {
   task: Task;
-  onDeleteTask: (task: Task) => void;
+  onDelete: (task: Task) => void;
   onToggleCompleted: (task: Task) => void;
   onEditTask: (task: Task, newName: string) => void;
 }
 
-export const TaskListItem: FunctionComponent<Props> = ({ task, onDeleteTask, onToggleCompleted, onEditTask }: Props) => {
+export const TaskListItem: FunctionComponent<Props> = ({ task, onDelete, onToggleCompleted, onEditTask }: Props) => {
   const [editing, setEditing] = useState(false);
   const [newName, setNewName] = useState(task.name);
   
-  const onDelete = () => {
-    onDeleteTask(task);
+  const onRemove = () => {
+    onDelete(task);
   };
 
   const onToggle = () => {
@@ -41,7 +41,7 @@ export const TaskListItem: FunctionComponent<Props> = ({ task, onDeleteTask, onT
   const dropdownOptions: Array<Option> = [
     {
       value: <GiCancel/>,
-      onClick: onDelete,
+      onClick: onRemove ,
     },
     {
       value: <FaEdit/>,
@@ -67,10 +67,6 @@ export const TaskListItem: FunctionComponent<Props> = ({ task, onDeleteTask, onT
           <h3 className="task-name"><span style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>{task.name}</span></h3>
         )}
       </div>
-      {/*<div className="actions">
-        <button onClick={onClick} className="button">Delete</button>
-        <button onClick={handleEdit} className="button">Edit</button>
-      </div>*/}
       <Dropdown
         options={dropdownOptions}
       />

@@ -7,9 +7,6 @@ import './App.css'
 import Header from "./components/Header";
 
 const App=()=> {
-
-
-
   const [todos, setTodos]=useState<Task[]>([]);
   const [completedTodos, setCompletedTodos] = useState<Task[]>([]);
   const [completedTasks, setCompletedTasks] = useState(0);
