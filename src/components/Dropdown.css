@@ -1,0 +1,7 @@
+.dropdown-list-container{
+    float: left;
+    overflow: auto;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}

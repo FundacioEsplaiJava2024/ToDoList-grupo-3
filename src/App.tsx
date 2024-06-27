@@ -6,8 +6,10 @@ import {v4 as uuidv4 } from 'uuid';
 import './App.css'
 import Header from "./components/Header";
 
-
 const App=()=> {
+
+
+
   const [todos, setTodos]=useState<Task[]>([]);
   const [completedTodos, setCompletedTodos] = useState<Task[]>([]);
   const [completedTasks, setCompletedTasks] = useState(0);
@@ -55,6 +57,7 @@ const App=()=> {
       setTodos(todos.filter((t) => t.id !== task.id));
     }
       setTotalTasks (totalTasks - 1)
+
     };
 
   const handleEditTask = (task: Task, newName: string) => {
