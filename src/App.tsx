@@ -6,8 +6,10 @@ import { Task } from "./model/task";
 import './App.css'
 import Header from "./components/Header";
 
-
 const App=()=> {
+
+
+
   const [todos, setTodos]=useState<Task[]>([]);
   const [completedTodos, setCompletedTodos] = useState<Task[]>([]);
   const [completedTasks, setCompletedTasks] = useState(0);
@@ -48,7 +50,6 @@ const App=()=> {
     setTodos(
       todos.map((t) => {
         if (t.id === task.id) {
-          
           return { ...t, completed: !t.completed };
         }
         return t;
@@ -83,7 +84,6 @@ const App=()=> {
       setTodos(todos.filter((t) => t.id !== task.id));
     }
       setTotalTasks (totalTasks - 1)
-
       api.deleteTask(task.id)
         .then((isSuccess) => console.log(isSuccess))
         .catch((error) => console.log(error))
