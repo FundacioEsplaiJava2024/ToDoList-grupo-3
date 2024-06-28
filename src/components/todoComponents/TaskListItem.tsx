@@ -1,10 +1,11 @@
 import { FunctionComponent, useState } from "react";
-import { Task } from "../model/task";
-import '../components/TaskListItem.css'
-import { Dropdown } from "./Dropdown";
-import { Option } from "../model/option";
+import { Task } from "../../model/task";
+import { Dropdown } from "../utils/Dropdown";
+import { Option } from "../../model/option";
 import { FaEdit } from "react-icons/fa";
 import { GiCancel } from "react-icons/gi";
+import './TaskListItem.css'
+
 
 interface Props {
   task: Task;

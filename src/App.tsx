@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { TodoistApi } from "@doist/todoist-api-typescript"
-import TodoForm from "./components/TodoForm";
-import TodoList from "./components/TodoList";
+import TodoForm from "./components/todoComponents/TodoForm";
+import TodoList from "./components/todoComponents/TodoList";
 import { Task } from "./model/task";
-import './App.css'
 import Header from "./components/Header";
+import './App.css'
 
 const App=()=> {
   const [todos, setTodos]=useState<Task[]>([]);
@@ -53,23 +53,20 @@ const App=()=> {
       })
     );
     
-    if (task.completed) {
+    if (task.completed) { //y volvemos a apretar.
       api.reopenTask(task.id)
         .then((isSuccess) => console.log(isSuccess))
         .catch((error) => console.log(error))
       setCompletedTodos(completedTodos.filter((t) => t.id!== task.id));
       setTodos([...todos, {...task, completed: false }]);
+      setCompletedTasks(completedTasks - 1);
     } else {
       api.closeTask(task.id)
         .then((isSuccess) => console.log(isSuccess))
         .catch((error) => console.log(error))
       setTodos(todos.filter((t) => t.id!== task.id));
       setCompletedTodos([...completedTodos, {...task, completed: true }]);
-    }
-    if (!task.completed) {
       setCompletedTasks(completedTasks + 1);
-    } else {
-      setCompletedTasks(completedTasks - 1);
     }
   };
   

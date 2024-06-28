@@ -1,7 +1,7 @@
 import React from "react";
-import { Task } from "../model/task";
+import { Task } from "../../model/task";
 import { TaskListItem } from "./TaskListItem";
-import '../components/TodoList.css'
+import './TodoList.css'
 
 interface TodoListProps{
     todos: Task[];
