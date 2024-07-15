@@ -6,6 +6,8 @@ import { Task } from "./model/task";
 import Header from "./components/Header";
 import './App.css'
 
+import axios from 'axios';
+
 const App=()=> {
   const [todos, setTodos]=useState<Task[]>([]);
   const [completedTodos, setCompletedTodos] = useState<Task[]>([]);
@@ -15,18 +17,24 @@ const App=()=> {
   const tokenGrupo3 : string = "4132c59154e7de32883147e312b183e6ea6b2a40";
   const api = new TodoistApi(tokenGrupo3);
 
+  const connectionApi = axios.create ({
+    baseURL: 'http://localhost:8000',
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow_Methods': 'GET, POST, PUT, DELETE'
+      }
+  });
+
   useEffect(() => {
-    api.getTasks().then((tasks) => {
-      const todoistTasks = tasks.map((task) => ({
-        id: task.id,
-        name: task.content,
-        completed: task.isCompleted,
-      }));
-      setTodos(todoistTasks.filter((task) => !task.completed));
-      setCompletedTodos(todoistTasks.filter((task) => task.completed));
-      setTotalTasks(todoistTasks.length);
-    }).catch(e=> console.log(e));
-  }, []);
+    connectionApi.get("/todolist")
+    .then((response) => {
+      const tasks = response.data;
+      setTodos(tasks.filter((task:Task) =>!task.completed));
+      setCompletedTodos(tasks.filter((task:Task) => task.completed));
+      setTotalTasks(tasks.length);
+    })
+   .catch((error) => console.log(error));
+}, []);
 
 
   const handleAddTarea= (text:string)=>{
