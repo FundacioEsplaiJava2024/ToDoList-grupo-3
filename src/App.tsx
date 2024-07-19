@@ -18,28 +18,29 @@ const App=()=> {
   const api = new TodoistApi(tokenGrupo3);
 
   const connectionApi = axios.create ({
-    baseURL: 'http://localhost:8000',
+    baseURL: 'http://localhost:8442',
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow_Methods': 'GET, POST, PUT, DELETE'
+      'Access-Control-Allow_Methods': 'GET, POST, PUT, DELETE, PATCH'
       }
   });
 
   useEffect(() => {
-    connectionApi.get("/todolist")
+    connectionApi.get("/todolist/tasks")
     .then((response) => {
       const tasks = response.data;
       setTodos(tasks.filter((task:Task) =>!task.completed));
       setCompletedTodos(tasks.filter((task:Task) => task.completed));
+      console.log(response.data)
       setTotalTasks(tasks.length);
     })
    .catch((error) => console.log(error));
 }, []);
 
-
   const handleAddTarea= (text:string)=>{
-      api.addTask({ content: text, projectId: "2335230345" }).then((response) => {
-        const responseId = response.id;
+      connectionApi.post("/todolist/task", {"name": text}).then((response) => {
+        const task = response.data;
+        const responseId = task.id;
         const newTodo : Task = {
           id: responseId,
           name: text,
@@ -62,16 +63,14 @@ const App=()=> {
     );
     
     if (task.completed) { //y volvemos a apretar.
-      api.reopenTask(task.id)
-        .then((isSuccess) => console.log(isSuccess))
-        .catch((error) => console.log(error))
+      connectionApi.patch(`/todolist/task/${task.id}`);
+
       setCompletedTodos(completedTodos.filter((t) => t.id!== task.id));
       setTodos([...todos, {...task, completed: false }]);
       setCompletedTasks(completedTasks - 1);
     } else {
-      api.closeTask(task.id)
-        .then((isSuccess) => console.log(isSuccess))
-        .catch((error) => console.log(error))
+      connectionApi.patch(`/todolist/task/${task.id}`);
+
       setTodos(todos.filter((t) => t.id!== task.id));
       setCompletedTodos([...completedTodos, {...task, completed: true }]);
       setCompletedTasks(completedTasks + 1);
@@ -86,18 +85,14 @@ const App=()=> {
       setTodos(todos.filter((t) => t.id !== task.id));
     }
       setTotalTasks (totalTasks - 1)
-      api.deleteTask(task.id)
-        .then((isSuccess) => console.log(isSuccess))
-        .catch((error) => console.log(error))
+      connectionApi.delete(`/todolist/task/${task.id}`);
     };
 
   const handleEditTask = (task: Task, newName: string) => {
     setTodos(
       todos.map((t) => {
         if (t.id === task.id) {
-          api.updateTask(task.id, { content: newName })
-            .then((isSuccess) => console.log(isSuccess))
-            .catch((error) => console.log(error))
+          connectionApi.put(`/todolist/task/${task.id}`, {"name":newName});
           return { ...t, name: newName };
         }
         return t;
