@@ -1,43 +1,46 @@
-import React, { Component } from 'react'
+import { Component } from 'react';
+import './FormStyle.css';
 
 export default class SignUp extends Component {
   render() {
     return (
-      <form>
-        <h3>Sign Up</h3>
+      <form className='formAuth'>
+        <h2 className='title'>Sign Up</h2>
 
-        <div className="mb-3">
+        <div className='forms'>
           <label>Username</label>
           <input
             type="text"
             className="form-control"
-            placeholder="Enter Username"
+            placeholder="Enter username"
           />
-        </div>
 
-        <div className="mb-3">
           <label>Password</label>
           <input
             type="password"
             className="form-control"
             placeholder="Enter password"
           />
+
+
+          <div>
+            <label>Email address</label>
+            <input
+              type="email"
+              className="form-control"
+              placeholder="Enter email"
+            />
+          </div>
         </div>
 
-        <div className="mb-3">
-          <label>Email address</label>
-          <input
-            type="email"
-            className="form-control"
-            placeholder="Enter email"
-          />
-        </div>
-
-        <div className="d-grid">
-          <button type="submit" className="btn btn-primary">
+        <div>
+          <button className="buttonForm" type="submit">
             Sign Up
           </button>
         </div>
+        <p className="mistake">
+          You don't have account? <a href="/">sign in</a>
+        </p>
       </form>
     )
   }

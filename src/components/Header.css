@@ -12,12 +12,12 @@
     align-items: center;
     margin-bottom: 20px;
 }
-  
+
 .progress-text {
     margin-right: 20px;
     margin-top: 10%;
 }
-  
+
 .progress-circle {
     display: inline-block;
     width: 130px;
@@ -26,7 +26,14 @@
     line-height: 120px;
     text-align: center;
     border-radius: 150%;
-    background-color: #34C759;
+    background-color: #00bfff;
     color: #fff;
     padding: 0;
+}
+.exit {
+    text-decoration: none;
+    font-weight: bold;
+    color: #00bfff;
+    margin-right: 20px;
+    margin-left: auto;
 }

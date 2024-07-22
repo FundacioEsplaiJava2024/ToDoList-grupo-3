@@ -1,52 +1,41 @@
-.sign {
+.auth-page {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    overflow: hidden;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .auth-form-container {
     background-color: #00bfff;
-    width: 300px;
-    height: 300px;
-    border-radius: 15px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
     box-shadow: 0px 10px 15px rgba(0, 0, 0, 0.1);
-    display: flex;
-    align-items: center;
-    padding: 25px;
+    width: 400px;
+    margin-bottom: 40px;
 }
 
-.auth-form-inner {
-    width: 100%;
-}
-
-.sign .container {
+.nav-bar {
     top: 0;
     background-color: #ffffff;
     height: 30px;
     width: 100%;
     display: flex;
     align-items: center;
-    padding: 20px;
+    padding: 10px;
     position: fixed;
-    /*z-index: 10;*/
 }
 
-.navbar-brand {
+.navbar-title {
     text-decoration: none;
-    color: #00bfff;
+    color: #000000;
     font-weight: bold;
-    font-size: 20px;
-    margin-right: 5px;
+    font-size: 18px;
+    margin-left: 10px;
 }
 
 .navbar-nav {
     display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-left: auto;
 }
 
 .nav-item {
@@ -55,10 +44,10 @@
 
 .nav-link {
     text-decoration: none;
-    color: #00bfff;
     font-weight: bold;
+    color: #00bfff;
 }
 
 .nav-link:hover {
-    text-decoration: underline;
+    color: #039fd3;
 }

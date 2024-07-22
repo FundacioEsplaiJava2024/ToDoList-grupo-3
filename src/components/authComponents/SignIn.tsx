@@ -1,21 +1,19 @@
-import React, { Component } from "react";
+import { Component } from "react";
+import './FormStyle.css';
 
 export default class Login extends Component {
   render() {
     return (
-      <form>
-        <h3>Sign In</h3>
+      <form className='formAuth'>
+        <h2 className='title'>Sign In</h2>
 
-        <div className="mb-3">
+        <div className="forms">
           <label>Username</label>
           <input
-            type="email"
+            type="text"
             className="form-control"
             placeholder="Enter username"
           />
-        </div>
-
-        <div className="mb-3">
           <label>Password</label>
           <input
             type="password"
@@ -23,11 +21,14 @@ export default class Login extends Component {
             placeholder="Enter password"
           />
         </div>
-        <div className="d-grid">
-          <button type="submit" className="btn btn-primary">
+        <div>
+          <button className="buttonForm" type="submit">
             Submit
           </button>
         </div>
+        <p className="mistake">
+          Already registered <a href="/sign-up">sign up?</a>
+        </p>
       </form>
     );
   }
