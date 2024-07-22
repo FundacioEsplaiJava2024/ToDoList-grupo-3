@@ -12,11 +12,13 @@ interface Props {
   onDelete: (task: Task) => void;
   onToggleCompleted: (task: Task) => void;
   onEditTask: (task: Task, newName: string) => void;
+  onEditDescription:(task:Task, newDescription:string)=>void;
 }
 
-export const TaskListItem: FunctionComponent<Props> = ({ task, onDelete, onToggleCompleted, onEditTask }: Props) => {
+export const TaskListItem: FunctionComponent<Props> = ({ task, onDelete, onToggleCompleted, onEditTask, onEditDescription }: Props) => {
   const [editing, setEditing] = useState(false);
   const [newName, setNewName] = useState(task.name);
+  const [newDescription, setNewDescription]=useState(task.description);
   
   const onRemove = () => {
     onDelete(task);
@@ -34,10 +36,17 @@ export const TaskListItem: FunctionComponent<Props> = ({ task, onDelete, onToggl
     if (newName.length < 1 || newName.length > 16) {
       alert("La tarea debe tener entre 1 y 16 caracteres");
       return;
-  }
+    }
+    if(newDescription.length<1||newDescription.length>100){
+      alert("La descripción debe tener entre 1 y 100 caracteres");
+    }
+    task.name=newName;
+    task.description=newDescription;
     onEditTask(task, newName);
+    onEditDescription(task, newDescription);
     setEditing(false);
-  };
+
+  }
 
   const dropdownOptions: Array<Option> = [
     {
@@ -62,10 +71,18 @@ export const TaskListItem: FunctionComponent<Props> = ({ task, onDelete, onToggl
           onChange={(e) => setNewName(e.target.value)}
           className="input"
         />
+        <textarea 
+        value={newDescription}
+        onChange={(e)=> setNewDescription(e.target.value)}
+        />
+
         <button className="button" onClick={handleSave}> Aceptar</button>
         </>
         ) : (
+          <div>
           <h3 className="task-name"><span style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>{task.name}</span></h3>
+          <p className="task-description">{task.description}</p>
+          </div>
         )}
       </div>
       <Dropdown
