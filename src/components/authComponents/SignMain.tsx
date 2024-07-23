@@ -29,7 +29,7 @@ function SignMain() {
             <div className="auth-form-container">
                 <div className="auth-form-inner">
                     <Routes>
-                        <Route path="/" element={<SignIn />} />
+                        <Route path="/*" element={<SignIn />} />
                         <Route path="/sign-up" element={<SignUp />} />
                     </Routes>
                 </div>
