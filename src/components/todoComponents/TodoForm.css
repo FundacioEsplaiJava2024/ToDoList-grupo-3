@@ -27,10 +27,6 @@
   cursor: pointer;
 }
 
-.add-task-form button:hover {
-  background-color: #4cae4c;
-}
-
 .add-task-form button:focus {
   outline: none;
 }

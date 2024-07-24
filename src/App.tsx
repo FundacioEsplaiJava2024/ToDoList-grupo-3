@@ -1,10 +1,10 @@
+import { TodoistApi } from "@doist/todoist-api-typescript";
 import { useEffect, useState } from "react";
-import { TodoistApi } from "@doist/todoist-api-typescript"
+import './App.css';
+import Header from "./components/Header";
 import TodoForm from "./components/todoComponents/TodoForm";
 import TodoList from "./components/todoComponents/TodoList";
 import { apiTask, Task } from "./model/task";
-import Header from "./components/Header";
-import './App.css'
 
 import axios from 'axios';
 
