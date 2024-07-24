@@ -1,5 +1,6 @@
 import React from 'react';
-import '../components/Header.css'
+import { Link } from 'react-router-dom';
+import '../components/Header.css';
 
 
 interface HeaderProps {
@@ -7,9 +8,14 @@ interface HeaderProps {
   totalTasks: number;
 }
 
-const Header: React.FC<HeaderProps> = ({  completedTasks, totalTasks }) => {
+const Header: React.FC<HeaderProps> = ({ completedTasks, totalTasks }) => {
   return (
     <div className="header">
+      <div className="nav-bar">
+        <Link className="exit" to={'/sign-up'}>
+          Exit
+        </Link>
+      </div>
       <h1>TodoList</h1>
       <div className="task-progress">
         <span className="progress-text">
