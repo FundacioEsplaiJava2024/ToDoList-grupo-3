@@ -20,7 +20,7 @@ const App = () => {
   const api = new TodoistApi(tokenGrupo3);
 
   const connectionApi = axios.create({
-    baseURL: 'http://localhost:8181',
+    baseURL: 'http://localhost:8442',
     headers: {
       'Authorization':storageService.getItem("jwt")?storageService.getItem("jwt"):"",
       'Content-Type': 'application/json',
