@@ -5,10 +5,12 @@ import Header from "./components/Header";
 import TodoForm from "./components/todoComponents/TodoForm";
 import TodoList from "./components/todoComponents/TodoList";
 import { apiTask, Task } from "./model/task";
+import { StorageService } from "./services/StorageService";
 
 import axios from 'axios';
 
 const App = () => {
+  const storageService = new StorageService();
   const [todos, setTodos] = useState<Task[]>([]);
   const [completedTodos, setCompletedTodos] = useState<Task[]>([]);
   const [completedTasks, setCompletedTasks] = useState(0);
@@ -18,8 +20,9 @@ const App = () => {
   const api = new TodoistApi(tokenGrupo3);
 
   const connectionApi = axios.create({
-    baseURL: 'http://localhost:8442',
+    baseURL: 'http://localhost:8181',
     headers: {
+      'Authorization':storageService.getItem("jwt")?storageService.getItem("jwt"):"",
       'Content-Type': 'application/json',
       'Access-Control-Allow_Methods': 'GET, POST, PUT, DELETE, PATCH'
     }

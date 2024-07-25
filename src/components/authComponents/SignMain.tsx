@@ -1,4 +1,5 @@
 import { Link, Route, Routes } from 'react-router-dom'
+import { useEffect, useState } from "react";
 import './SignMain.css'
 
 
@@ -6,6 +7,7 @@ import SignIn from './SignIn'
 import SignUp from './SignUp'
 
 function SignMain() {
+    
     return (
         <div className="auth-page">
             <div className="nav-bar">
