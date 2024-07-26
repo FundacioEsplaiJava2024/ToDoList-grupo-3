@@ -18,7 +18,7 @@ const App = () => {
   //const api = new TodoistApi(tokenGrupo3);
 
   const connectionApi = axios.create({
-    baseURL: 'http://localhost:8443',
+    baseURL: 'http://localhost:8442',
     headers: {
       'Content-Type': 'application/json',
       'Access-Control-Allow_Methods': 'GET, POST, PUT, DELETE, PATCH'
@@ -128,6 +128,7 @@ const App = () => {
     if(task.completed){
       setCompletedTodos(completedTodos.map((t)=>{
         if(t.id==task.id){
+          connectionApi.put(`/todolist/task/${task.id}`, { "name": newName });
           return{...t, name:newName};
         }
         return t;
@@ -139,7 +140,7 @@ const App = () => {
     setTodos(
       todos.map((t) =>{
         if(t.id===task.id){
-          connectionApi.put(`/todolist/task/${task.id}/description`,{"description":newDescription});
+          connectionApi.put(`/todolist/task/${task.id}`,{"description":newDescription});
           return{...t, description:newDescription};
         }
         return t;
@@ -148,6 +149,7 @@ const App = () => {
     if(task.completed){
       setCompletedTodos(completedTodos.map((t)=>{
         if(t.id==task.id){
+          connectionApi.put(`/todolist/task/${task.id}`,{"description":newDescription});
           return{...t, description:newDescription};
         }
         return t;
