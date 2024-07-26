@@ -15,7 +15,7 @@ const App = () => {
   const [totalTasks, setTotalTasks] = useState(0);
 
   const tokenGrupo3: string = "4132c59154e7de32883147e312b183e6ea6b2a40";
-  const api = new TodoistApi(tokenGrupo3);
+  //const api = new TodoistApi(tokenGrupo3);
 
   const connectionApi = axios.create({
     baseURL: 'http://localhost:8442',
@@ -57,18 +57,20 @@ const App = () => {
     const newTask: Task = {
       id: apiTask.id,
       name: apiTask.name,
+      description: apiTask.description,
       completed: apiState
     }
     return newTask;
   };
 
   const handleAddTarea = (text: string) => {
-    connectionApi.post("/todolist/task", { "name": text }).then((response) => {
+    connectionApi.post("/todolist/task", { "name": text, "description":text }).then((response) => {
       const task = response.data;
       const responseId = task.id;
       const newTodo: Task = {
         id: responseId,
         name: text,
+        description:text,
         completed: false,
       };
       setTodos([...todos, newTodo]);
@@ -123,6 +125,37 @@ const App = () => {
         return t;
       })
     );
+    if(task.completed){
+      setCompletedTodos(completedTodos.map((t)=>{
+        if(t.id==task.id){
+          connectionApi.put(`/todolist/task/${task.id}`, { "name": newName });
+          return{...t, name:newName};
+        }
+        return t;
+      }));
+    }
+  };
+
+  const handleEditDescription=(task:Task, newDescription:string)=>{
+    setTodos(
+      todos.map((t) =>{
+        if(t.id===task.id){
+          connectionApi.put(`/todolist/task/${task.id}`,{"description":newDescription});
+          return{...t, description:newDescription};
+        }
+        return t;
+      })
+    );
+    if(task.completed){
+      setCompletedTodos(completedTodos.map((t)=>{
+        if(t.id==task.id){
+          connectionApi.put(`/todolist/task/${task.id}`,{"description":newDescription});
+          return{...t, description:newDescription};
+        }
+        return t;
+      })
+    );
+    }
   };
 
   return (
@@ -141,6 +174,7 @@ const App = () => {
             onDeleteTask={handleDelete}
             onToggleCompleted={handleToggleCompleted}
             onEditTask={handleEditTask}
+            onEditDescription={handleEditDescription}
           />
         </div>
         <div className="column right-column">
@@ -150,6 +184,7 @@ const App = () => {
             onDeleteTask={handleDelete}
             onToggleCompleted={handleToggleCompleted}
             onEditTask={handleEditTask}
+            onEditDescription={handleEditDescription}
           />
         </div>
       </div>
