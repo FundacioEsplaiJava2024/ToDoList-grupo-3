@@ -39,7 +39,7 @@ export default class SignUp extends Component {
           </button>
         </div>
         <p className="mistake">
-          You don't have account? <a href="/">sign in</a>
+          Already registered? <a href="/">Sign in</a>
         </p>
       </form>
     )

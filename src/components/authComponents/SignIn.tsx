@@ -27,7 +27,7 @@ export default class Login extends Component {
           </button>
         </div>
         <p className="mistake">
-          Already registered <a href="/sign-up">sign up?</a>
+          You don't have account? <a href="/sign-up">Sign up</a>
         </p>
       </form>
     );
