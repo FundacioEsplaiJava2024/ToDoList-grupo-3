@@ -26,12 +26,5 @@ export class HttpService{
         this.connectionApi.post(url,body).
         then(response=>{successCallback(response.data);})
         .catch(error=>{errorCallback(error);});
-
-   }
-
-
-
-
-
-
-}
+     }
+    }

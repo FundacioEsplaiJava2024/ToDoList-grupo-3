@@ -1,4 +1,4 @@
-import { TodoistApi } from "@doist/todoist-api-typescript";
+
 import { useEffect, useState } from "react";
 import './App.css';
 import Header from "./components/Header";
@@ -16,8 +16,6 @@ const App = () => {
   const [completedTasks, setCompletedTasks] = useState(0);
   const [totalTasks, setTotalTasks] = useState(0);
 
-  const tokenGrupo3: string = "4132c59154e7de32883147e312b183e6ea6b2a40";
-  const api = new TodoistApi(tokenGrupo3);
 
   const connectionApi = axios.create({
     baseURL: 'http://localhost:8442',
