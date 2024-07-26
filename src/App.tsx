@@ -73,7 +73,7 @@ const App = () => {
         description:text,
         completed: false,
       };
-      setTodos((prevTodos)=>[...todos, newTodo]);
+      setTodos([...todos, newTodo]);
       setTotalTasks(totalTasks + 1);
     }).catch(e => console.log(e));
 
