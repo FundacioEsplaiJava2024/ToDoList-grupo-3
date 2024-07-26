@@ -66,7 +66,7 @@ this.httpService.doPost('/todolist/user/login'
           </button>
         </div>
         <p className="mistake">
-          Not registered ?<a href="/sign-up">Sign up</a>
+          You don't have account? <a href="/sign-up">Sign up</a>
         </p>
         <p>{this.state.error}</p>
         {this.state.redirect?<Navigate to="/tasks" />:''}

@@ -37,7 +37,6 @@ this.httpService.doPost('/todolist/user/register'
 
 }
 
-
 render() {
   return (
     <form className='formAuth'>
@@ -72,17 +71,17 @@ render() {
         </div>
       </div>
 
-      <div>
-        <button className="buttonForm" type="submit" onClick={e=>this.register(e)}>
-          Sign Up
-        </button>
-      </div>
-      <p className="mistake">
-        You don't have account? <a href="/">sign in</a>
-      </p>
-      <p>{this.state.error}</p>
-      {this.state.redirect?<Navigate to="/*" />:''}
-    </form>
-  )
-}
+        <div>
+          <button className="buttonForm" type="submit" onClick={e=>this.register(e)}>
+            Sign Up
+          </button>
+        </div>
+        <p className="mistake">
+          Already registered? <a href="/">Sign in</a>
+        </p>
+        <p>{this.state.error}</p>
+        {this.state.redirect?<Navigate to="/*" />:''}
+      </form>
+    )
+  }
 }
