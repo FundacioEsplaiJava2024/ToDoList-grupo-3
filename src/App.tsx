@@ -65,13 +65,13 @@ const App = () => {
   };
 
   const handleAddTarea = (text: string) => {
-    connectionApi.post("/todolist/task", { "name": text, "description":text }).then((response) => {
+    connectionApi.post("/todolist/task", { "name": text }).then((response) => {
       const task = response.data;
       const responseId = task.id;
       const newTodo: Task = {
         id: responseId,
         name: text,
-        description:text,
+        description:"{Añadir description}",
         completed: false,
       };
       setTodos([...todos, newTodo]);
