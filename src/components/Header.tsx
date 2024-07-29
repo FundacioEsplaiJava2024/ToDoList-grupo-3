@@ -12,7 +12,7 @@ const Header: React.FC<HeaderProps> = ({ completedTasks, totalTasks }) => {
   return (
     <div className="header">
       <div className="nav-bar">
-        <Link className="exit" to={'/sign-up'}>
+        <Link className="exit" to={'/sign-in'}>
           Exit
         </Link>
       </div>
