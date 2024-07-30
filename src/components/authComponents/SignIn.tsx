@@ -7,6 +7,7 @@ import { Navigate} from "react-router-dom";
 
 type LoginState = { username: string, password:string, error:string,redirect:boolean };
 type LoginProps = {};
+
 export default class Login extends Component<LoginProps,LoginState> {
 httpService:HttpService;
 storageService: StorageService;
@@ -37,7 +38,6 @@ this.httpService.doPost('/todolist/user/login'
   ,()=>this.setState({error:'Login or password is incorrect'}))
 
 }
-
 
   render() {
     return (

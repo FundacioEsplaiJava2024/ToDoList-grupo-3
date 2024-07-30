@@ -8,6 +8,7 @@ import { apiTask, Task } from "./model/task";
 import { StorageService } from "./services/StorageService";
 
 import axios from 'axios';
+import { Navigate } from "react-router-dom";
 
 const App = () => {
   const [todos, setTodos] = useState<Task[]>([]);
@@ -16,6 +17,12 @@ const App = () => {
   const [totalTasks, setTotalTasks] = useState(0);
 
   const storageService = new StorageService();
+
+  const token = storageService.getItem("jwt");
+
+  if(token == undefined){
+    return <Navigate to="/"/>
+  }
 
   const connectionApi = axios.create({
     baseURL: 'http://localhost:8442',

@@ -8,11 +8,16 @@ interface HeaderProps {
   totalTasks: number;
 }
 
+const handleLogOut = () => {
+  localStorage.removeItem('jwt');
+  window.location.href = "/";
+}
+
 const Header: React.FC<HeaderProps> = ({ completedTasks, totalTasks }) => {
   return (
     <div className="header">
       <div className="nav-bar">
-        <Link className="exit" to={'/sign-in'}>
+        <Link className="exit" to={'/sign-in'} onClick={handleLogOut}>
           Exit
         </Link>
       </div>
