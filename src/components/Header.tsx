@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import '../components/Header.css';
 
 
@@ -9,10 +9,17 @@ interface HeaderProps {
 }
 
 const Header: React.FC<HeaderProps> = ({ completedTasks, totalTasks }) => {
+  
+  const navigate = useNavigate();
+
+  const handleLogOut = () => {
+    localStorage.removeItem('jwt');
+    navigate("/");
+  }
   return (
     <div className="header">
       <div className="nav-bar">
-        <Link className="exit" to={'/sign-in'}>
+        <Link className="exit" to={'/sign-in'} onClick={handleLogOut}>
           Exit
         </Link>
       </div>
